@@ -83,6 +83,8 @@ with col1:
     for x in lst:
         stopwords.add(x)
     wc = WordCloud(max_words=1000, stopwords=stopwords, margin=10, random_state=1, width=1000, height=400).generate(text)
+    # store default colored image
+    default_colors = wc.to_array()
     plt.title(f"{option} Proposal Text Word Cloud")
     plt.imshow(wc.recolor(color_func=grey_color_func, random_state=3), interpolation="bilinear")
     plt.axis("off")
@@ -111,7 +113,7 @@ with col2:
     model.fit(X_train, y_train, epochs=10, batch_size=32)
 
     st.subheader('Proposal Success Rate Predictor')
-    user_input = st.text_area('Enter your proposal text here:', height=250)
+    user_input = st.text_area('Enter your proposal text here:', height=300)
     if st.button('Predict Success Rate'):
         user_input_tfidf = tfidf.transform([user_input]).toarray()
         prediction = model.predict(user_input_tfidf)
