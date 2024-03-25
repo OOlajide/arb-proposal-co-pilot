@@ -25,28 +25,26 @@ st.set_page_config(
     }
 )
 
-text_1 = '<p style="font-family:sans-serif; color:#4d372c; font-size: 20px;">Embark on a journey of proposal success with our innovative web app designed to empower grant proposers like you. Our platform offers two powerful tools to elevate your proposal game:</p>'
-text_2 = '<p style="font-family:sans-serif; color:#4d372c; font-size: 20px;">Explore a visual representation of past successful proposals through our Wordcloud feature. Uncover key words and themes that have led to success, providing you with valuable insights to enhance your own proposals.</p>'
-text_3 = '<p style="font-family:sans-serif; color:#4d372c; font-size: 20px;">Predict the success of your proposals with precision using our Success Rate Predictor app. Trained on the texts of past successful proposals, this tool leverages data-driven analysis to forecast the outcome of your submissions.</p>'
-text_4 = '<p style="font-family:sans-serif; color:#4d372c; font-size: 20px;">Empower yourself with knowledge, insights, and predictive capabilities to navigate the world of grant proposals confidently. Let Arbitrum Proposal Co-Pilot be your guide to crafting compelling and successful proposals.</p>'
-text_5 = '<p style="font-family:sans-serif; color:#4d372c; font-size: 20px;">Dataset and full code can be found in this <a href="https://github.com/OOlajide/arb-proposal-co-pilot/">Github repo</a>.</p>'
+text_1 = '<p style="font-family:sans-serif; color:#4d372c; font-size: 20px;">Explore a visual representation of past successful proposals through our Wordcloud feature. Uncover key words and themes that have led to success, providing you with valuable insights to enhance your own proposals.</p>'
+text_2 = '<p style="font-family:sans-serif; color:#4d372c; font-size: 20px;">Predict the success of your proposals with precision using our Success Rate Predictor app. Trained on the texts of past successful proposals, this tool leverages data-driven analysis to forecast the outcome of your submissions.</p>'
+text_3 = '<p style="font-family:sans-serif; color:#4d372c; font-size: 20px;">Empower yourself with knowledge, insights, and predictive capabilities to navigate the world of grant proposals confidently. Let Arbitrum Proposal Co-Pilot be your guide to crafting compelling and successful proposals.</p>'
+text_4 = '<p style="font-family:sans-serif; color:#4d372c; font-size: 20px;">Dataset and full code can be found in this <a href="https://github.com/OOlajide/arb-proposal-co-pilot/">Github repo</a>.</p>'
 
 st.markdown(f'<h1 style="color:#434346;font-size:60px;text-align:center;">{"Arbitrum Proposal Co-Pilot"}</h1>', unsafe_allow_html=True)
 st.markdown(f'<h1 style="color:#434346;font-size:30px;text-align:center;">{"Welcome to Arbitrum Proposal Co-Pilot! 🚀"}</h1>', unsafe_allow_html=True)
 
-st.markdown(text_1, unsafe_allow_html=True)
 st.markdown(f'<h1 style="color:#434346;font-size:30px;text-align:left;">{"Wordcloud Insights"}</h1>', unsafe_allow_html=True)
-st.markdown(text_2, unsafe_allow_html=True)
+st.markdown(text_1, unsafe_allow_html=True)
 st.markdown(f'<h1 style="color:#434346;font-size:30px;text-align:left;">{"Proposal Success Rate Predictor"}</h1>', unsafe_allow_html=True)
+st.markdown(text_2, unsafe_allow_html=True)
 st.markdown(text_3, unsafe_allow_html=True)
-st.markdown(text_4, unsafe_allow_html=True)
 
 colored_header(
     label="",
     description="",
     color_name="gray-70",
 )
-st.markdown(text_5, unsafe_allow_html=True)
+st.markdown(text_4, unsafe_allow_html=True)
 colored_header(
     label="",
     description="",
@@ -61,6 +59,7 @@ with col1:
     st.subheader('Proposal Text Wordcloud')
     options = ['All Grant Types']
     options.extend(list(df['grant_name'].unique()))
+    # remove grant types with 2 proposals only or less
     options_to_remove = ["Plurality Labs - Firestarters", "Plurality Labs - RFP STIP Monitoring"]
     options = list(filter(lambda x: x not in options_to_remove, options))
     option = st.selectbox(
@@ -112,6 +111,7 @@ with col2:
     model.fit(X_train, y_train, epochs=10, batch_size=32)
 
     st.subheader('Proposal Success Rate Predictor')
+    st.info('Proposals with predicted success rate below 80% would likely be rejected.', icon="ℹ️")
     user_input = st.text_area('Enter your proposal text here:', height=300)
     if st.button('Predict Success Rate'):
         user_input_tfidf = tfidf.transform([user_input]).toarray()
