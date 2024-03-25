@@ -1,1 +1,6 @@
 streamlit-extras
+pandas
+streamlit
+scikit-learn
+tensorflow
+wordcloud
