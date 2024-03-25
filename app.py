@@ -57,6 +57,7 @@ col1, col2 = st.columns([2, 1])
 
 with col1:
     st.subheader('Proposal Text Wordcloud')
+    st.info('The words that are more prominent across proposals are larger.', icon="ℹ️")
     options = ['All Grant Types']
     options.extend(list(df['grant_name'].unique()))
     # remove grant types with 2 proposals only or less
@@ -113,10 +114,10 @@ with col2:
     model.fit(X_train, y_train, epochs=10, batch_size=32)
 
     st.subheader('Proposal Success Rate Predictor')
+    st.info('Proposals with predicted success rate below 80% would likely be rejected.', icon="ℹ️")
     user_input = st.text_area('Enter your proposal text here:', height=300)
     if st.button('Predict Success Rate'):
         user_input_tfidf = tfidf.transform([user_input]).toarray()
         prediction = model.predict(user_input_tfidf)
         success_percentage = round(prediction[0][0] * 100, 2)
         st.write(f'The predicted success rate for your proposal is: {success_percentage}%')
-        st.info('Proposals with predicted success rate below 80% would likely be rejected.', icon="ℹ️")
