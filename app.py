@@ -83,7 +83,7 @@ with col1:
     lst = ['Arbitrum', 'will', 'n', 's', 'ARB', 'nThe','project', 'grant', 'grants', 'https']
     for x in lst:
         stopwords.add(x)
-    wc = WordCloud(max_words=1000, stopwords=stopwords, margin=10, random_state=1, width=1000, height=400).generate(text)
+    wc = WordCloud(max_words=1000, stopwords=stopwords, margin=10, random_state=1, width=1000, height=500).generate(text)
     # store default colored image
     default_colors = wc.to_array()
     plt.title(f"{option} Proposal Text Word Cloud")
