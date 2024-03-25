@@ -112,9 +112,9 @@ with col2:
 
     st.subheader('Proposal Success Rate Predictor')
     user_input = st.text_area('Enter your proposal text here:', height=250)
-    st.info('Proposals with predicted success rate below 80% would likely be rejected.', icon="ℹ️")
     if st.button('Predict Success Rate'):
         user_input_tfidf = tfidf.transform([user_input]).toarray()
         prediction = model.predict(user_input_tfidf)
         success_percentage = round(prediction[0][0] * 100, 2)
         st.write(f'The predicted success rate for your proposal is: {success_percentage}%')
+        st.info('Proposals with predicted success rate below 80% would likely be rejected.', icon="ℹ️")
