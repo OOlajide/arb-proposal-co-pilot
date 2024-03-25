@@ -31,7 +31,6 @@ text_3 = '<p style="font-family:sans-serif; color:#4d372c; font-size: 20px;">Emp
 text_4 = '<p style="font-family:sans-serif; color:#4d372c; font-size: 20px;">Dataset and full code can be found in this <a href="https://github.com/OOlajide/arb-proposal-co-pilot/">Github repo</a>.</p>'
 
 st.markdown(f'<h1 style="color:#434346;font-size:60px;text-align:center;">{"Arbitrum Proposal Co-Pilot"}</h1>', unsafe_allow_html=True)
-st.markdown(f'<h1 style="color:#434346;font-size:30px;text-align:center;">{"Welcome to Arbitrum Proposal Co-Pilot! 🚀"}</h1>', unsafe_allow_html=True)
 
 st.markdown(f'<h1 style="color:#434346;font-size:30px;text-align:left;">{"Wordcloud Insights"}</h1>', unsafe_allow_html=True)
 st.markdown(text_1, unsafe_allow_html=True)
